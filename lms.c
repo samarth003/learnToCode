@@ -16,11 +16,14 @@ void login(struct user details){
 		printf("*");		
 	}
 }
+void exit(struct user details){
+	login(details);
+}
 int main(){
 	struct user user_record;
 	int num_select;
 	login(user_record);
-	printf("\nPlease key in the number corresponding to what you want to do\n1.View your leave\n2.Apply for leave\n3.Update leave record\n");
+	printf("\nPlease key in the number corresponding to what you want to do\n1.View your leave\n2.Apply for leave\n3.Update leave record\n4.Exit\n");
 	scanf("%d", num_select);
 /*	
 	switch(num_select){
@@ -29,6 +32,8 @@ int main(){
 		case 2: apply_leave();
 				break;
 		case 3: update_leave();
+				break;
+		case 4: exit(user_record);
 				break;
 		default: printf("Please try again!");
 				break;
