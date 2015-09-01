@@ -20,7 +20,7 @@ int main(){
 	struct user user_record;
 	int num_select;
 	login(user_record);
-	printf("Please key in the number corresponding to what you want to do\n1.View your leave\n2.Apply for leave\n3.Update leave record");
+	printf("\nPlease key in the number corresponding to what you want to do\n1.View your leave\n2.Apply for leave\n3.Update leave record\n");
 	scanf("%d", num_select);
 /*	
 	switch(num_select){
