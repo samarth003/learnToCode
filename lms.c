@@ -6,8 +6,14 @@ struct user{
 	char pwd[4];
 }details;
 
+int sick_leave = 6;
+int annual_leave = 14;
+int leaves_applied = 0;
+int sick_leave_applied = 0;
+
 void log_screen(struct user details);
 void app_out(struct user details);
+void view_leave(int an_apply, int sl_apply);
 
 int main(){
 	struct user user_record;
@@ -18,9 +24,9 @@ void log_screen(struct user details){
 	int counter;
 	int num_select;
 	printf("user name: ");
-	scanf("%s", details.uname);
+	scanf("%s", &details.uname);
 	printf("\npassword: ");
-	//scanf("%s", details.pwd);
+	//scanf("%s", &details.pwd);
 	for(counter=0; counter<sizeof(details.pwd); counter++){
 		details.pwd[counter] = getch();
 		printf("*");		
@@ -31,7 +37,7 @@ void log_screen(struct user details){
 	
 	switch(num_select){
 		case 1:
-			//view_leave();
+			view_leave(leaves_applied, sick_leave_applied);
 			break;
 		case 2: 
 			//apply_leave();
@@ -50,4 +56,11 @@ void log_screen(struct user details){
 void app_out(struct user detail_repeat){
 	printf("You've successfully logged out!\n");
 	log_screen(detail_repeat);
+}
+void view_leave(int an_apply, int sl_apply){
+	sick_leave = (sick_leave - sl_apply);	
+	annual_leave = (annual_leave - leaves_applied);
+
+	printf("Remaining Annual leaves: %d", annual_leave);
+	printf("\nRemaining sick leaves: %d", sick_leave);
 }
