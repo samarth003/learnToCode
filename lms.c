@@ -11,9 +11,13 @@ int annual_leave = 14;
 int leaves_applied = 0;
 int sick_leave_applied = 0;
 
+int *p_applyleaves = &leaves_applied;
+int *p_slapply = &sick_leave_applied;
+
 void log_screen(struct user details);
 void app_out(struct user details);
-void view_leave(int an_apply, int sl_apply);
+//void view_leave(int leaves_applied, int *p_applyleaves, int sick_leave_applied, int *p_slapply);
+void view_leave(int *p_applyleaves, int *p_slapply);
 
 int main(){
 	struct user user_record;
@@ -37,7 +41,7 @@ void log_screen(struct user details){
 	
 	switch(num_select){
 		case 1:
-			view_leave(leaves_applied, sick_leave_applied);
+			view_leave(&leaves_applied, &sick_leave_applied);
 			break;
 		case 2: 
 			//apply_leave();
@@ -57,10 +61,26 @@ void app_out(struct user detail_repeat){
 	printf("You've successfully logged out!\n");
 	log_screen(detail_repeat);
 }
-void view_leave(int an_apply, int sl_apply){
-	sick_leave = (sick_leave - sl_apply);	
-	annual_leave = (annual_leave - leaves_applied);
+void view_leave(int *p_applyleaves, int *p_slapply){
+	sick_leave = (sick_leave - *p_slapply);	
+	annual_leave = (annual_leave - *p_applyleaves);
 
 	printf("Remaining Annual leaves: %d", annual_leave);
 	printf("\nRemaining sick leaves: %d", sick_leave);
+}
+
+void apply_leave(){
+	//apply leave and call update once applied
+	int choose_leave;
+	printf("\nWhich leave you want to apply\n1.Sick leave\n2.Annual leave\n");
+	scanf("%d", &choose_leave);
+	if(choose_leave == 1){
+		printf("\nNo. of days you were sick: ");
+		scanf("%d", &sick_leave_applied);
+	}
+	else{
+		printf("\nNo. of days of vacation: ");
+		scanf("%d", &leaves_applied);
+	}
+	
 }
