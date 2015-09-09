@@ -34,32 +34,6 @@ int main(){
 void log_screen(struct user details0){
 	username(details0);
 	password(details0);
-/*	int counter;
-	printf("user name: ");
-	for(counter=0; counter<sizeof(details.uname); counter++){
-		details.uname[counter] = getch();
-		if(details.uname[counter] == ENTER_KEY){ 
-			break;
-		}else{
-			printf("%c", details.uname[counter]);
-		}
-	}
-	//scanf("%s", &details.uname);
-	printf("\npassword: ");
-	//scanf("%s", &details.pwd);
-	for(counter=0; counter<sizeof(details.pwd); counter++){
-		details.pwd[counter] = getch();
-		if((details.pwd[counter] == ENTER_KEY) && (counter > 6)){ 
-			break;
-		}
-		else if(details.pwd[counter] == ENTER_KEY){
-			printf("Incorrect password!");
-			//a call to get the password field again
-		}
-		else{
-			printf("*");
-		}
-	}*/
 	options(details);	
 }
 void app_out(struct user detail_repeat){
