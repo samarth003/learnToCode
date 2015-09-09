@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include<conio.h>
 
+#define ENTER_KEY 13 //13 is the ascii code for enter key
+
 struct user{
 	char uname[30];
-	char pwd[4];
+	char pwd[10];
 }details;
 
 int sick_leave = 6;
@@ -14,27 +16,32 @@ int sick_leave_applied = 0;
 int *p_applyleaves = &leaves_applied;
 int *p_slapply = &sick_leave_applied;
 
-void log_screen(struct user details);
+void log_screen(struct user details0);
 void app_out(struct user details);
 //void view_leave(int leaves_applied, int *p_applyleaves, int sick_leave_applied, int *p_slapply);
 void view_leave(struct user details2);
 void apply_leave(struct user details1);
 void update_leave(int *p_applyleaves, int *p_slapply);
 void options(struct user rec_user);
+void username(struct user details);
+void password(struct user details3);
 
 int main(){
 	struct user user_record;
 	log_screen(user_record);
 	return 0;
 }
-void log_screen(struct user details){
-	int counter;
+void log_screen(struct user details0){
+	username(details0);
+	password(details0);
+/*	int counter;
 	printf("user name: ");
 	for(counter=0; counter<sizeof(details.uname); counter++){
 		details.uname[counter] = getch();
-		printf("%c", details.uname[counter]);
-		if(details.uname[counter] == 13){ //13 is the ascii code for enter key
+		if(details.uname[counter] == ENTER_KEY){ 
 			break;
+		}else{
+			printf("%c", details.uname[counter]);
 		}
 	}
 	//scanf("%s", &details.uname);
@@ -42,8 +49,17 @@ void log_screen(struct user details){
 	//scanf("%s", &details.pwd);
 	for(counter=0; counter<sizeof(details.pwd); counter++){
 		details.pwd[counter] = getch();
-		printf("*");		
-	}
+		if((details.pwd[counter] == ENTER_KEY) && (counter > 6)){ 
+			break;
+		}
+		else if(details.pwd[counter] == ENTER_KEY){
+			printf("Incorrect password!");
+			//a call to get the password field again
+		}
+		else{
+			printf("*");
+		}
+	}*/
 	options(details);	
 }
 void app_out(struct user detail_repeat){
@@ -101,6 +117,39 @@ void options(struct user rec_user){
 			break;
 		default:
 			printf("Please try again!");
+			//options(rec_user); //sometimes goes to infinite loop, runs out of memory and crashes
 			break;
+	}
+}
+void username(struct user details){
+	int counter;
+	printf("user name: ");
+	for(counter=0; counter<sizeof(details.uname); counter++){
+		details.uname[counter] = getch();
+		if(details.uname[counter] == ENTER_KEY){ 
+			break;
+		}else{
+			printf("%c", details.uname[counter]);
+		}
+	}
+	//scanf("%s", &details.uname);*/
+}
+void password(struct user details3){
+	int counter1; 
+	printf("\npassword: ");
+	//scanf("%s", &details.pwd);
+	for(counter1=0; counter1<sizeof(details3.pwd); counter1++){
+		details3.pwd[counter1] = getch();
+		if((details3.pwd[counter1] == ENTER_KEY) && (counter1 >= 5)){ 
+			break;
+		}
+		else if((details3.pwd[counter1] == ENTER_KEY) && (counter1 < 5)){
+			printf("Incorrect password!");
+			//a call to get the password field again
+			password(details3);
+		}
+		else{
+			printf("*");
+		}
 	}
 }
