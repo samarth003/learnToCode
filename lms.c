@@ -34,6 +34,32 @@ int main(){
 void log_screen(struct user details0){
 	username(details0);
 	password(details0);
+/*	int counter;
+	printf("user name: ");
+	for(counter=0; counter<sizeof(details.uname); counter++){
+		details.uname[counter] = getch();
+		if(details.uname[counter] == ENTER_KEY){ 
+			break;
+		}else{
+			printf("%c", details.uname[counter]);
+		}
+	}
+	//scanf("%s", &details.uname);
+	printf("\npassword: ");
+	//scanf("%s", &details.pwd);
+	for(counter=0; counter<sizeof(details.pwd); counter++){
+		details.pwd[counter] = getch();
+		if((details.pwd[counter] == ENTER_KEY) && (counter > 6)){ 
+			break;
+		}
+		else if(details.pwd[counter] == ENTER_KEY){
+			printf("Incorrect password!");
+			//a call to get the password field again
+		}
+		else{
+			printf("*");
+		}
+	}*/
 	options(details);	
 }
 void app_out(struct user detail_repeat){
@@ -111,16 +137,16 @@ void username(struct user details){
 void password(struct user details3){
 	int counter1; 
 	printf("\npassword: ");
-	//scanf("%s", &details.pwd);
 	for(counter1=0; counter1<sizeof(details3.pwd); counter1++){
 		details3.pwd[counter1] = getch();
 		if((details3.pwd[counter1] == ENTER_KEY) && (counter1 >= 5)){ 
 			break;
 		}
 		else if((details3.pwd[counter1] == ENTER_KEY) && (counter1 < 5)){
-			printf("Incorrect password!");
+			printf("\nIncorrect password!");
 			//a call to get the password field again
 			password(details3);
+			break;
 		}
 		else{
 			printf("*");
