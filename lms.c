@@ -16,6 +16,7 @@ int *p_slapply = &sick_leave_applied;
 
 void log_screen(struct user details);
 void app_out(struct user details);
+//void view_leave(int leaves_applied, int *p_applyleaves, int sick_leave_applied, int *p_slapply);
 void view_leave(struct user details2);
 void apply_leave(struct user details1);
 void update_leave(int *p_applyleaves, int *p_slapply);
@@ -26,10 +27,17 @@ int main(){
 	log_screen(user_record);
 	return 0;
 }
-void log_screen(struct user details){	//login authentication
+void log_screen(struct user details){
 	int counter;
 	printf("user name: ");
-	scanf("%s", &details.uname);
+	for(counter=0; counter<sizeof(details.uname); counter++){
+		details.uname[counter] = getch();
+		printf("%c", details.uname[counter]);
+		if(details.uname[counter] == 13){ //13 is the ascii code for enter key
+			break;
+		}
+	}
+	//scanf("%s", &details.uname);
 	printf("\npassword: ");
 	//scanf("%s", &details.pwd);
 	for(counter=0; counter<sizeof(details.pwd); counter++){
@@ -38,11 +46,14 @@ void log_screen(struct user details){	//login authentication
 	}
 	options(details);	
 }
-void app_out(struct user detail_repeat){	//log out
+void app_out(struct user detail_repeat){
 	printf("You've successfully logged out!\n");
 	log_screen(detail_repeat);
 }
-void view_leave(struct user details2){	
+void view_leave(struct user details2){
+	//sick_leave = (sick_leave - *p_slapply);	
+	//annual_leave = (annual_leave - *p_applyleaves);
+
 	printf("Remaining Annual leaves: %d", annual_leave);
 	printf("\nRemaining sick leaves: %d", sick_leave);
 	options(details2);
