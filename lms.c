@@ -98,12 +98,23 @@ void options(struct user rec_user){
 }
 void username(struct user details){
 	int counter;
-	printf("user name: ");
+	printf("\nuser name: ");
 	for(counter=0; counter<sizeof(details.uname); counter++){
 		details.uname[counter] = getch();
-		if(details.uname[counter] == ENTER_KEY){ 
+		if((details.uname[counter] == ENTER_KEY) && (counter >=7)){ 
 			break;
-		}else{
+		}
+		else if((details.uname[counter] == ENTER_KEY) && (counter <7)){
+			printf("\nusername length is a minimum of 7 characters!");
+			username(details);
+			break;
+		}
+		else if((!isalnum(details.uname[counter])) && (details.uname[counter] != ENTER_KEY)){
+			printf("\nInvalid read!");
+			username(details);
+			break;
+		}
+		else{
 			printf("%c", details.uname[counter]);
 		}
 	}
@@ -123,7 +134,7 @@ void password(struct user details3){
 				password(details3);
 				break;
 			}
-			else if(!isalnum(details3.pwd[counter1])){
+			else if((!isalnum(details3.pwd[counter1])) && (details3.pwd[counter1] != ENTER_KEY)){
 				printf("Only alphanumeric characters allowed!");
 				password(details3);
 				break;
