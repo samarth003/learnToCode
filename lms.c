@@ -35,7 +35,7 @@ int main(){
 void log_screen(struct user details0){
 	username(details0);
 	password(details0);
-	options(details);	
+	options(details0);	
 }
 void app_out(struct user detail_repeat){
 	printf("You've successfully logged out!\n");
@@ -58,14 +58,31 @@ void apply_leave(struct user details1){
 	if(choose_leave == 1){
 		printf("\nNo. of days you were sick: ");
 		scanf("%d", &sick_leave_applied);
-		update_leave(&leaves_applied, &sick_leave_applied); //update leave
+		if(sick_leave_applied <= sick_leave){
+			update_leave(&leaves_applied, &sick_leave_applied); //update leave
+		}
+		else{
+			printf("\nYou're not allowed to fill more leaves than you already have!");
+			printf("\nreturning to options window..");
+		}
+		options(details1);
+	}
+	else if(choose_leave == 2){
+		printf("\nNo. of days of vacation: ");
+		scanf("%d", &leaves_applied);
+		if(leaves_applied <= annual_leave){
+			update_leave(&leaves_applied, &sick_leave_applied); //update leave
+		}
+		else{
+			printf("\nYou're not allowed to fill more leaves than you already have!");
+			printf("\nreturning to options window..");
+		}
 		options(details1);
 	}
 	else{
-		printf("\nNo. of days of vacation: ");
-		scanf("%d", &leaves_applied);
-		update_leave(&leaves_applied, &sick_leave_applied); //update leave
-		options(details1);
+		printf("\nInvalid option. Please choose from options above!");
+		apply_leave(details1);
+		//break;
 	}
 }
 void update_leave(int *p_applyleaves, int *p_slapply){
