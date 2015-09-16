@@ -109,7 +109,7 @@ void options(struct user rec_user){
 			break;
 		default:
 			printf("Please try again!");
-			//options(rec_user); //sometimes goes to infinite loop, runs out of memory and crashes
+			options(rec_user); //goes to infinite loop only when num_select is an alphabet
 			break;
 	}
 }
