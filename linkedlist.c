@@ -14,7 +14,7 @@ struct node *insertNode(struct node *p_list, struct node *p_pre);
 
 int main(){
 	
-	p_list = insertNode(&p_list, &p_pre);	
+	p_list = insertNode(p_list, p_pre);	
 	return 0;
 }
 struct node *insertNode(struct node *p_list, struct node *p_pre){
