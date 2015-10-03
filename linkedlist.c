@@ -10,11 +10,14 @@ struct node *p_list = NULL;
 //node_tag *p_list = NULL; only works with typedef struct 
 struct node *p_pre = NULL; 
 
-//struct node *insertNode(struct node *p_list, struct node *p_pre);
+struct node *insertNode(struct node *p_list, struct node *p_pre);
 
 int main(){
 	
-	//p_list = insertNode(&p_list, &p_pre);	
+	p_list = insertNode(&p_list, &p_pre);	
+	return 0;
+}
+struct node *insertNode(struct node *p_list, struct node *p_pre){
 	struct node *p_new;
 	p_new = (struct node *)malloc(sizeof(struct node));
 	
@@ -29,9 +32,8 @@ int main(){
 			p_new->link = p_pre->link;
 			p_pre->link = p_new;
 		}
+		return p_list;
 	}
-	return 0;
 }
-
 
 
